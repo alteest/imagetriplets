@@ -12,12 +12,13 @@ import java.nio.file.Paths;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+
 @SuppressWarnings("serial")
 public class TImage extends JLabel {
 	static int w = 360;
 	static int h = 360;
 
-	private String filename;
+	private String filename = null;
 	
 	public TImage(String filename) {
 		super();
@@ -25,6 +26,7 @@ public class TImage extends JLabel {
         setMinimumSize(new Dimension(w, h));
         setPreferredSize(new Dimension(w, h));
         setMaximumSize(new Dimension(w, h));
+        setIcon(null);
 
 	}
 
@@ -36,6 +38,8 @@ public class TImage extends JLabel {
 		this.filename = filename;
 		if (this.filename != null) {
 			setIcon(scaleImage(loadImage().getImage(), w, h));
+		} else {
+			setIcon(null);
 		}
 	}
 
@@ -78,4 +82,5 @@ public class TImage extends JLabel {
     	}
     	return true;
     }
+   
 }

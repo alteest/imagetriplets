@@ -21,7 +21,11 @@ public class ButtonNext extends JButton implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
-		DisplayImage.similarImage.setImage(getNextFilename(DisplayImage.similarImage.getFilename()));
+		String filename = DisplayImage.similarImage.getFilename();
+		if (filename == null) {
+			filename = DisplayImage.image.getFilename();
+		}
+		DisplayImage.similarImage.setImage(getNextFilename(filename));
 	}
 	
 	protected String getNextFilename(String filename) {

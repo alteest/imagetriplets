@@ -71,6 +71,7 @@ public class DisplayImage extends JFrame {
         //imagePanel.setPreferredSize(new Dimension(1080, 400));
         //imagePanel.setMaximumSize(new Dimension(1080, 400));
 
+        image.addImageMouseListener(this);
         imagePanel.add(image, BorderLayout.WEST);
         imagePanel.add(similarImage, BorderLayout.CENTER);
         imagePanel.add(negativeImage, BorderLayout.EAST);
