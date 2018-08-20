@@ -27,7 +27,6 @@ public class TImage extends JLabel {
         setPreferredSize(new Dimension(w, h));
         setMaximumSize(new Dimension(w, h));
         setIcon(null);
-
 	}
 
 	public String getFilename() {

@@ -20,6 +20,7 @@ import com.imagetriplets.components.TripletsTableListSelectionListener;
 import com.imagetriplets.components.button.ButtonAdd;
 import com.imagetriplets.components.button.ButtonNext;
 import com.imagetriplets.components.button.ButtonRandom;
+import com.imagetriplets.components.button.ButtonSave;
 
 @SuppressWarnings("serial")
 public class DisplayImage extends JFrame {
@@ -27,7 +28,8 @@ public class DisplayImage extends JFrame {
 	public static ArrayList<String> filenames = new ArrayList<String>();
 	public static TripletList triplets = new TripletList();
 	
-	public static JTable tripletsTable; 
+	public static JTable tripletsTable;
+	public static ButtonSave saveButton;
 	public static TPanel image = new TPanel(new ButtonAdd());
 	public static TPanel similarImage = new TPanel(new ButtonNext());
 	public static TPanel negativeImage = new TPanel(new ButtonRandom());
@@ -61,8 +63,11 @@ public class DisplayImage extends JFrame {
         JScrollPane tripletsScrollPane = new JScrollPane(tripletsTable); 
         tripletsScrollPane.setPreferredSize(new Dimension(360, 800));
         
+        saveButton = new ButtonSave();
+        
         leftPanel.add(editCheckBox, BorderLayout.NORTH);
-        leftPanel.add(tripletsScrollPane, BorderLayout.SOUTH);
+        leftPanel.add(tripletsScrollPane, BorderLayout.CENTER);
+        leftPanel.add(saveButton, BorderLayout.SOUTH);
 
         JPanel rightPanel = new JPanel(new BorderLayout());
         

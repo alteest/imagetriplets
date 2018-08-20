@@ -35,4 +35,7 @@ public class Triplet {
 		this.negative = negative;
 	}
 
+	public String getLine() {
+		return getName() +"," + getSimilar() + "," + getNegative();
+	} 
 }

@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.swing.table.DefaultTableModel;
@@ -75,5 +77,22 @@ public class TripletList {
         data[2] = negative;
         tableModel.addRow(data);
         tableModel.fireTableDataChanged();
+	}
+	
+	public void save() {
+	    FileWriter fileWriter;
+		try {
+			fileWriter = new FileWriter("test.txt");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+	    PrintWriter printWriter = new PrintWriter(fileWriter);
+	    for (Triplet triplet: triplets) {
+	    	printWriter.println(triplet.getLine());
+	    }
+	    printWriter.close();
+		
 	}
 }
