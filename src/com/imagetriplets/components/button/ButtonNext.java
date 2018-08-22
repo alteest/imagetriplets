@@ -3,6 +3,8 @@ package com.imagetriplets.components.button;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.swing.JButton;
 
@@ -25,19 +27,32 @@ public class ButtonNext extends JButton implements ActionListener {
 		if (filename == null) {
 			filename = DisplayImage.image.getFilename();
 		}
-		DisplayImage.similarImage.setImage(getNextFilename(filename));
+		String nextFilename = getNextFilename(filename);
+		while (nextFilename == null) {
+			nextFilename = getNextFilename(filename);
+		}
+		DisplayImage.similarImage.setImage(nextFilename);
 	}
 	
-	protected String getNextFilename(String filename) {
+	private String getNextFilename(String filename) {
 		int index = DisplayImage.filenames.indexOf(filename);
 		if (index > -1) {
-			index++;
-			if (index == DisplayImage.filenames.size()) {
-				index = 0;
-			}
-			String newfilename = DisplayImage.filenames.get(index);
-			if (newfilename.equals(DisplayImage.image.getFilename())) {
-				return getNextFilename(newfilename);
+			Path f1 = Paths.get(DisplayImage.imagesDirectory.toString(), filename).getParent();
+			String newfilename = null;
+			while (newfilename == null) {
+				index++;
+				if (index == DisplayImage.filenames.size()) {
+					index = 0;
+				}
+				newfilename = DisplayImage.filenames.get(index);
+				if (newfilename.equals(DisplayImage.image.getFilename())) {
+					newfilename = null;
+				} else {
+					Path f2 = Paths.get(DisplayImage.imagesDirectory.toString(), newfilename).getParent();
+					if (!f1.equals(f2)) {
+						newfilename = null;
+					}
+				}
 			}
 			return newfilename;
 		}

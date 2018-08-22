@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import javax.swing.JCheckBox;
@@ -25,6 +27,9 @@ import com.imagetriplets.components.button.ButtonSave;
 @SuppressWarnings("serial")
 public class DisplayImage extends JFrame {
 	
+	//public static Path imagesDirectory = Paths.get("src", "images");
+	public static Path imagesDirectory = Paths.get("C:", "img");
+	
 	public static ArrayList<String> filenames = new ArrayList<String>();
 	public static TripletList triplets = new TripletList();
 	
@@ -37,7 +42,7 @@ public class DisplayImage extends JFrame {
 	static private JCheckBox editCheckBox = new JCheckBox("Edit mode");
 
 	public DisplayImage() {
-		addFiles("src/images");
+		addFiles(imagesDirectory.toString());
         initUI();
     }
 
@@ -103,7 +108,7 @@ public class DisplayImage extends JFrame {
         File directory = new File(directoryName);
     	for (File file : directory.listFiles()) {
     		if (file.isFile()) {
-    			filenames.add(file.getPath().substring("src/images/".length()));
+    			filenames.add(file.getPath().substring((int) imagesDirectory.toString().length() + 1));
     		} else if (file.isDirectory()) {
     			addFiles(file.getAbsolutePath());
     		}

@@ -12,6 +12,8 @@ import java.nio.file.Paths;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import com.imagetriplets.DisplayImage;
+
 
 @SuppressWarnings("serial")
 public class TImage extends JLabel {
@@ -44,7 +46,7 @@ public class TImage extends JLabel {
 
     private ImageIcon loadImage() {
         if (filename != null) {
-        	Path filePath = Paths.get("src", "images", filename);
+        	Path filePath = Paths.get(DisplayImage.imagesDirectory.toString(), filename);
         	return new ImageIcon(filePath.toString());
         }
         return null;

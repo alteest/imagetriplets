@@ -82,7 +82,7 @@ public class TripletList {
 	public void save() {
 	    FileWriter fileWriter;
 		try {
-			fileWriter = new FileWriter("test.txt");
+			fileWriter = new FileWriter("src/triplets.csv");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

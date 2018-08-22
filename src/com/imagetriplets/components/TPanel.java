@@ -6,8 +6,6 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -58,17 +56,16 @@ public class TPanel extends JPanel {
 		image.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent me) {
 				if (me.getButton() == MouseEvent.BUTTON3) {
-					Path directory = Paths.get("src", "images");
-					String absolutePath = new File(".", directory.toString()).getAbsolutePath();
 					FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
 
 					JFileChooser fileChooser = new JFileChooser();
-					fileChooser.setCurrentDirectory(directory.toFile());
+					fileChooser.setCurrentDirectory(DisplayImage.imagesDirectory.toFile());
 					fileChooser.setFileFilter(imageFilter);
 					int result = fileChooser.showOpenDialog(component);
 					if (result == JFileChooser.APPROVE_OPTION) {
 						File selectedFile = fileChooser.getSelectedFile();
-						String filename = selectedFile.getAbsolutePath().substring(absolutePath.length() - 1);
+						int l = (int) DisplayImage.imagesDirectory.toString().length() + 1;
+						String filename = selectedFile.toString().substring(l);
 						setImage(filename);
 						DisplayImage.similarImage.setImage(null);
 						DisplayImage.negativeImage.setImage(null);
